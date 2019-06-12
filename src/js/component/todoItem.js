@@ -8,10 +8,11 @@ class TodoItem extends React.Component {
 			<ul className="list-group mt-5">
 				<Context.Consumer>
 					{({ store, actions }) => {
-						return store.demo.map((item, index) => {
+						return store.todo.map((item, index) => {
 							return (
 								<li key={index} className="list-group-item">
-									k
+									<span className="mr-3 text-success font-weight-bold">{item.id}</span>
+									{item.todo_item}
 								</li>
 							);
 						});

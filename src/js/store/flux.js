@@ -24,8 +24,14 @@ const getState = ({ getStore, setStore }) => {
 					body: JSON.stringify({
 						todo_item: item
 					})
+				}).then(getUpdatedDataFromBackend => {
+					fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/todo")
+						.then(response => response.json())
+						.then(data => {
+							store.todo = data;
+							setStore({ store });
+						});
 				});
-				setStore({ store });
 			},
 			changeColor: (index, color) => {
 				//get the store
