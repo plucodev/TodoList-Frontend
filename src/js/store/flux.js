@@ -20,7 +20,7 @@ const getState = ({ getStore, setStore }) => {
 				const store = getStore();
 				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/todo", {
 					method: "POST",
-					headers: { "content-type": "application-json" },
+					headers: { "Content-type": "application-json" },
 					body: JSON.stringify({
 						todo_item: item
 					})
