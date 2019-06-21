@@ -12,29 +12,24 @@ export class Home extends React.Component {
 					<Context.Consumer>
 						{({ store, actions }) => {
 							return (
-								<React.Fragment>
-									<div className="input-group mb-3 w-50 m-auto">
-										<input
-											type="text"
-											className="form-control"
-											name="item"
-											placeholder="What I have to do?????"
-											aria-label="Recipient's username"
-											aria-describedby="button-addon2"
-										/>
-										<div className="input-group-append">
-											<button
-												className="btn btn-outline-secondary"
-												onClick={() =>
-													actions.addTodo(document.querySelector("[name=item]").value)
-												}
-												type="button"
-												id="button-addon2">
-												Add New Todo
-											</button>
-										</div>
+								<div className="input-group mb-3 w-50 m-auto item">
+									<input
+										type="text"
+										className="form-control"
+										name="item"
+										placeholder="What I have to do?????"
+									/>
+									<div className="input-group-append">
+										<button
+											className="btn btn-outline-secondary"
+											onClick={() => {
+												actions.addTodo(document.querySelector("[name=item]").value);
+											}}
+											type="button">
+											Add New Todo
+										</button>
 									</div>
-								</React.Fragment>
+								</div>
 							);
 						}}
 					</Context.Consumer>
