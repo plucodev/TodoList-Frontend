@@ -29,6 +29,8 @@ const injectContext = PassedComponent => {
 			 * you should do your ajax requests or fetch api requests here
 			 **/
 			this.state.actions.getUpdatedTodo();
+			this.state.actions.getUpdatedPerson();
+			// this.state.actions.getStorage();
 			// fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/todo")
 			// 	.then(response => response.json())
 			// 	.then(data => {

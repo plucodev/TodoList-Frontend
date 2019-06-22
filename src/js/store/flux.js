@@ -14,7 +14,8 @@ const getState = ({ getStore, setStore, getActions }) => {
 				}
 			],
 			todo: [],
-			token: null
+			token: [],
+			person: []
 		},
 		actions: {
 			getUpdatedTodo: () => {
@@ -25,6 +26,14 @@ const getState = ({ getStore, setStore, getActions }) => {
 						setStore({ todo: data });
 					});
 			},
+			getUpdatedPerson: () => {
+				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/person")
+					.then(response => response.json())
+					.then(data => {
+						// store.todo = data;
+						setStore({ person: data });
+					});
+			},
 			deleteTodo: id => {
 				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/todo/" + id, {
 					method: "DELETE"
@@ -32,10 +41,28 @@ const getState = ({ getStore, setStore, getActions }) => {
 					getActions().getUpdatedTodo();
 				});
 			},
+			registerUser: (username, email) => {
+				const store = getStore();
+				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/person", {
+					method: "POST",
+					headers: { "Content-type": "application/json" },
+					body: JSON.stringify({
+						username: username,
+						email: email
+					})
+				});
+			},
+			getStorage: () => {
+				const store = getStore();
+
+				// localStorage.setItem("jwt", "response.access_token");
+				// console.log(localStorage.getItem("jwt"));
+				// console.log("paolo");
+			},
 			login: (username, email) => {
 				const store = getStore();
 
-				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io", {
+				fetch("https://3000-d8e924cf-c73b-489c-9c3f-30eb2e9739e2.ws-us0.gitpod.io/login", {
 					method: "POST",
 					headers: { "Content-type": "application/json" },
 					body: JSON.stringify({
@@ -43,21 +70,25 @@ const getState = ({ getStore, setStore, getActions }) => {
 						email: email
 					})
 				})
-					.then(res => {
-						return res.json();
+					// .then(localStorage.setItem("jwtw", "response.access_token"))
+					.then(res => res.json())
+					.then(data => {
+						console.log(data);
+						localStorage.setItem("jwt", data.jwt);
 					})
-					.then(response => {
-						//console.log(loggedInUser.user);
-						// localStorage.setItem("jwt", response.jwt);
-						// console.log(response);
-						store.token = response.jwt;
-						setStore({ store });
-						console.log(localStorage.getItem("jwt"));
-
-						// return true;
-					})
-
 					.catch(error => console.error("Error:", error));
+				// .then(data => {
+				// 	console.log(data);
+				// 	store.token = data;
+				// 	setStore({ token: data });
+				// });
+				//console.log(loggedInUser.user);
+
+				// console.log(response);
+				// store.token = response.jwt;
+				// setStore({ store });
+				// console.log(localStorage.getItem("jwt"));
+				// console.log(response.access_token);
 			},
 			addTodo: item => {
 				const store = getStore();

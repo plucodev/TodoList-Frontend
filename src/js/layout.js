@@ -8,6 +8,7 @@ import Login from "./views/login";
 import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
+import Dashboard from "./component/dashboard";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
@@ -26,6 +27,7 @@ export class Layout extends React.Component {
 						<Switch>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/login" component={Login} />
+							<Route exact path="/dashboard" component={Dashboard} />
 							<Route path="/demo" component={Demo} />
 							<Route path="/single/:theid" component={Single} />
 							<Route render={() => <h1>Not found!</h1>} />
