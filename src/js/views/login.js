@@ -2,6 +2,7 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 import TodoItem from "../component/todoItem";
+import ProductCard from "../component/productCard";
 import { Context } from "../store/appContext";
 
 export default class Login extends React.Component {
@@ -59,6 +60,7 @@ export default class Login extends React.Component {
 									}>
 									Register
 								</button>
+								<ProductCard />
 							</React.Fragment>
 						);
 					}}
